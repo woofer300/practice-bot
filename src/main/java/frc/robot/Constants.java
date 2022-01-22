@@ -20,6 +20,12 @@ public final class Constants {
         public static final int RIGHT_BACK_TALON = 1;
     }
 
+    public static final class TurretConstants {
+        public static final int TURRET_TALON = 7;
+        public static final int MAX_VELOCITY = 214;
+        public static final int MAX_ACCELERATION = 50;
+    }
+
     public static final class OIConstants {
         public static final int DRIVER_CONTROLLER_PORT = 0;
     }
