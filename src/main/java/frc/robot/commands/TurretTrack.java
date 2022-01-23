@@ -1,5 +1,8 @@
 package frc.robot.commands;
 
+import java.util.function.DoubleSupplier;
+
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.LimelightSubsystem;
 import frc.robot.subsystems.TurretSubsystem;
@@ -17,21 +20,26 @@ public class TurretTrack extends CommandBase{
     @Override
     public void initialize(){
         m_turret.configureTurret(1, 1); //Configures the turret to run at max velocity + acceleration
+        m_turret.zeroEncoder();
+
     }
 
-    double error;
-    double currentPOS;
     @Override
     public void execute() {
-        error = m_limelight.getHorizontalOffset(true); //Gets the x angle from the limelight
-        currentPOS = m_turret.getAdjustedEncoder(); //Gets the current position of the turret
-        //if(isFinished()) { m_TurretSubsystem.PIDMove(error); }
+        double error = m_limelight.getHorizontalOffset(true); //Gets the x angle from the limelight
+        double currentPOS = m_turret.getAdjustedEncoder();
+        double velocity = m_turret.getEncoderVelocity();
+        //if(isFinished()) {- m_TurretSubsystem.PIDMove(error); }
+        SmartDashboard.putNumber("Error", error);
+        SmartDashboard.putNumber("CurrentPOS", currentPOS);
+        SmartDashboard.putNumber("Velocity", velocity);
+        SmartDashboard.putNumber("Debug Error", m_turret.getError());
         m_turret.PIDMove(error);
       }
 
     @Override
     public boolean isFinished() {
-        return (error + 100 > currentPOS && currentPOS > error - 100) || error+currentPOS > 1450 || error+currentPOS < -1450;
+        return false;
     }
 
     @Override
