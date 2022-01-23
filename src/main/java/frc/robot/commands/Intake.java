@@ -16,4 +16,9 @@ public class Intake extends CommandBase {
     public void execute() {
         m_intake.intake();
     }
+
+    @Override
+    public boolean isFinished() {
+        return false;
+    }
 }
