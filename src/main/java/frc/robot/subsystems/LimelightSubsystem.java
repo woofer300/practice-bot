@@ -32,6 +32,6 @@ public class LimelightSubsystem extends SubsystemBase {
   }
 
   public boolean isTargetDetected() {
-    return m_limelightTable.getEntry("tv").getDouble(0) == 1;
+    return !(m_limelightTable.getEntry("tv").getDouble(0) == 0);
   }
 }

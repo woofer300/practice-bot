@@ -26,7 +26,7 @@ public class TurretTrack extends CommandBase{
 
     @Override
     public void execute() {
-        double error = m_limelight.getHorizontalOffset(true); //Gets the x angle from the limelight
+        double error = m_limelight.getHorizontalOffset(false); //Gets the x angle from the limelight
         double currentPOS = m_turret.getAdjustedEncoder();
         double velocity = m_turret.getEncoderVelocity();
         //if(isFinished()) {- m_TurretSubsystem.PIDMove(error); }
@@ -34,7 +34,9 @@ public class TurretTrack extends CommandBase{
         SmartDashboard.putNumber("CurrentPOS", currentPOS);
         SmartDashboard.putNumber("Velocity", velocity);
         SmartDashboard.putNumber("Debug Error", m_turret.getError());
-        m_turret.PIDMove(error);
+        SmartDashboard.putBoolean("Target Detected", m_limelight.isTargetDetected());
+        if(m_limelight.isTargetDetected()) {m_turret.PIDMove(error);}
+
       }
 
     @Override
