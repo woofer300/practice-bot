@@ -25,7 +25,10 @@ public final class Constants {
         public static final int MAX_VELOCITY = 1500;
         public static final int MAX_ACCELERATION = 1500;
 
-
+        //Sensor Prep
+        public static double MAXSENSORVELOCITY= 0.38095;
+        
+        
         //PID CONTROL SPECIFIC CONSTANTS
         public static final int kTimeoutMs = 30;
         public static final int kSlotIdx= 0;
