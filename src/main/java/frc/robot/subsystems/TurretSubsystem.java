@@ -70,4 +70,8 @@ public class TurretSubsystem extends SubsystemBase {
     public double getPOS() {
         return m_turretMotor.getSelectedSensorPosition();
     }
+
+    public double getMotorPower() {
+        return m_turretMotor.getBusVoltage();
+    }
 }

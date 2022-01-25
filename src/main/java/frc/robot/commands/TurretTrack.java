@@ -1,5 +1,6 @@
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.LimelightSubsystem;
 import frc.robot.subsystems.TurretSubsystem;
@@ -24,6 +25,11 @@ public class TurretTrack extends CommandBase{
     @Override
     public void execute() {
         error = m_limelight.getHorizontalOffset(true); //Gets the x angle from the limelight
+        SmartDashboard.putNumber("Error", error);
+        SmartDashboard.putNumber("Current POS", m_turret.getPOS());
+        SmartDashboard.putNumber("Motor Power", m_turret.getMotorPower());
+        SmartDashboard.putBoolean("Targeted", m_limelight.isTargetDetected());
+
         m_turret.PIDmove(error + m_turret.getPOS());
       }
 
