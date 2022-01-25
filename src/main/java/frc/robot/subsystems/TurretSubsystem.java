@@ -71,7 +71,15 @@ public class TurretSubsystem extends SubsystemBase {
         return m_turretMotor.getSelectedSensorPosition();
     }
 
+    public double getVelocity() {
+        return m_turretMotor.getSelectedSensorVelocity();
+    }
+
     public double getMotorPower() {
         return m_turretMotor.getBusVoltage();
+    }
+
+    public double getDebugError() {
+        return m_turretMotor.getClosedLoopError();
     }
 }

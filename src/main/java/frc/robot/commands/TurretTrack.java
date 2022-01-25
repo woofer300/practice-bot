@@ -27,6 +27,7 @@ public class TurretTrack extends CommandBase{
         error = m_limelight.getHorizontalOffset(true); //Gets the x angle from the limelight
         SmartDashboard.putNumber("Error", error);
         SmartDashboard.putNumber("Current POS", m_turret.getPOS());
+        SmartDashboard.putNumber("Velocitt" , m_turret.getVelocity());
         SmartDashboard.putNumber("Debug Error", m_turret.getDebugError());
         SmartDashboard.putNumber("Motor Power", m_turret.getMotorPower());
         SmartDashboard.putBoolean("Targeted", m_limelight.isTargetDetected());
