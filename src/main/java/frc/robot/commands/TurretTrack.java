@@ -4,6 +4,7 @@ import java.util.ResourceBundle.Control;
 import java.util.function.DoubleSupplier;
 
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.LimelightSubsystem;
@@ -31,6 +32,7 @@ public class TurretTrack extends CommandBase{
     @Override
     public void execute() {
         error = m_limelight.getHorizontalOffset(true); //Gets the x angle from the limelight
+        SmartDashboard.putBoolean("PID Running", false);
         SmartDashboard.putNumber("Error", error);
         SmartDashboard.putNumber("Current POS", m_turret.getPOS());
         SmartDashboard.putNumber("Velocitt" , m_turret.getVelocity());
@@ -45,6 +47,7 @@ public class TurretTrack extends CommandBase{
             m_turret.moveB();
         }
         else {
+            SmartDashboard.putBoolean("PID Running", true);
             m_turret.PIDmove(error + m_turret.getPOS());
         }
       }
