@@ -63,9 +63,11 @@ public class TurretSubsystem extends SubsystemBase {
 
     }
 
-
-
     public void PIDmove(double error) {
         m_turretMotor.set(ControlMode.MotionMagic, error);
+    }
+
+    public double getPOS() {
+        return m_turretMotor.getSelectedSensorPosition();
     }
 }

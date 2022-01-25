@@ -5,10 +5,16 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.subsystems.LimelightSubsystem;
+import frc.robot.subsystems.TurretSubsystem;
 
 public class TurretFind extends CommandBase {
+  private TurretSubsystem m_turret;
+  private LimelightSubsystem m_limelight;
   /** Creates a new TurretFind. */
-  public TurretFind() {
+  public TurretFind(TurretSubsystem subsystem, LimelightSubsystem limelight) {
+    m_turret = subsystem;
+    m_limelight= limelight;
     // Use addRequirements() here to declare subsystem dependencies.
   }
 

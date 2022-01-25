@@ -22,19 +22,19 @@ public final class Constants {
 
     public static final class TurretConstants {
         public static final int TURRET_TALON = 4;
-        public static final int MAX_VELOCITY = 1500;
-        public static final int MAX_ACCELERATION = 1500;
+        public static final int MAX_VELOCITY = 750;
+        public static final int MAX_ACCELERATION = 750;
 
         //Sensor Prep
-        public static double MAXSENSORVELOCITY= 0.38095;
+        public static double MAXSENSORVELOCITY= 1560;
         
         
         //PID CONTROL SPECIFIC CONSTANTS
         public static final int kTimeoutMs = 30;
         public static final int kSlotIdx= 0;
         public static final int kPIDLoopIdx= 0;
-        public static final double kF= 4;
-        public static final double kP= .1;
+        public static double kF = .5;
+        public static final double kP= 0;
         public static final double kI= 0;    
         public static final double kD= 0;
         public static final double AllowableError= 10;

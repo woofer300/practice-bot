@@ -22,16 +22,20 @@ public class LimelightSubsystem extends SubsystemBase {
     // This method will be called once per scheduler run 
   }
 
-  public double getHorizontalOffset(boolean inEncoderUnits) {
-    double x= m_limelightTable.getEntry("tx").getDouble(0);
-    return inEncoderUnits ? x * 4096/360 : x;
+  /**Returns the horizontal offset. If true, returns in encoder units */
+  public double getHorizontalOffset(boolean inEncoder) {
+    double x = m_limelightTable.getEntry("tx").getDouble(0);
+    //this is basically just fancy syntax. Returns tx in encoder units if false
+    return inEncoder ? x * 4096/360 : x;
   }
 
+  /**Returns the vertical offset of the limelight away from the target in degrees */
   public double getVerticalOffset() {
     return m_limelightTable.getEntry("ty").getDouble(0);
   }
 
+  /**Returns true if a target is detected */
   public boolean isTargetDetected() {
-    return !(m_limelightTable.getEntry("tv").getDouble(0) == 0);
+    return m_limelightTable.getEntry("tv").getDouble(0) == 1;
   }
 }
