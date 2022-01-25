@@ -82,4 +82,8 @@ public class TurretSubsystem extends SubsystemBase {
     public double getDebugError() {
         return m_turretMotor.getClosedLoopError();
     }
+
+    public void move() {
+        m_turretMotor.set(.5);
+    }
 }

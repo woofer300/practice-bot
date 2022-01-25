@@ -1,5 +1,9 @@
 package frc.robot.commands;
 
+import java.util.ResourceBundle.Control;
+import java.util.function.DoubleSupplier;
+
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.LimelightSubsystem;
@@ -8,10 +12,12 @@ import frc.robot.subsystems.TurretSubsystem;
 public class TurretTrack extends CommandBase{
     private TurretSubsystem m_turret;
     private LimelightSubsystem m_limelight;
+    private XboxController m_controller;
 
-    public TurretTrack(TurretSubsystem subsystem, LimelightSubsystem ls) {
+    public TurretTrack(TurretSubsystem subsystem, LimelightSubsystem ls, XboxController controller) {
         m_turret= subsystem;
         m_limelight= ls;
+        m_controller= controller;
         addRequirements(m_turret, m_limelight);
     }
 
@@ -31,8 +37,13 @@ public class TurretTrack extends CommandBase{
         SmartDashboard.putNumber("Debug Error", m_turret.getDebugError());
         SmartDashboard.putNumber("Motor Power", m_turret.getMotorPower());
         SmartDashboard.putBoolean("Targeted", m_limelight.isTargetDetected());
-
-        m_turret.PIDmove(error + m_turret.getPOS());
+        if(m_controller.getAButton())
+        {
+            m_turret.move();
+        }
+        else {
+            m_turret.PIDmove(error + m_turret.getPOS());
+        }
       }
 
     @Override
