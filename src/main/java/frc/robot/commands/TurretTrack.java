@@ -38,9 +38,11 @@ public class TurretTrack extends CommandBase{
         SmartDashboard.putNumber("Motor Power", m_turret.getMotorPower());
         SmartDashboard.putBoolean("Targeted", m_limelight.isTargetDetected());
         SmartDashboard.putBoolean("APressed", m_controller.getAButton());
-        if(m_controller.getAButton())
-        {
-            m_turret.move();
+        if(m_controller.getAButton()) {
+            m_turret.moveA();
+        }
+        else if (m_controller.getBButton()) {
+            m_turret.moveB();
         }
         else {
             m_turret.PIDmove(error + m_turret.getPOS());
