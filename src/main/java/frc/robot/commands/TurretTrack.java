@@ -37,6 +37,7 @@ public class TurretTrack extends CommandBase{
         SmartDashboard.putNumber("Debug Error", m_turret.getDebugError());
         SmartDashboard.putNumber("Motor Power", m_turret.getMotorPower());
         SmartDashboard.putBoolean("Targeted", m_limelight.isTargetDetected());
+        SmartDashboard.putBoolean("APressed", m_controller.getAButton());
         if(m_controller.getAButton())
         {
             m_turret.move();
