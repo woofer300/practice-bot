@@ -1,7 +1,6 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.DemandType;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.StatusFrame;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
@@ -54,6 +53,9 @@ public class TurretSubsystem extends SubsystemBase {
         //Set the max cruise velocity and acceleration
         m_turretMotor.configMotionCruiseVelocity(TurretConstants.MAX_VELOCITY, TurretConstants.kTimeoutMs);
         m_turretMotor.configMotionCruiseVelocity(TurretConstants.MAX_ACCELERATION, TurretConstants.kTimeoutMs);
+
+        //Sets peak current
+        m_turretMotor.configPeakCurrentLimit(20);
 
         //Zero the encoder
 		m_turretMotor.setSelectedSensorPosition(0, TurretConstants.kPIDLoopIdx, TurretConstants.kTimeoutMs);
