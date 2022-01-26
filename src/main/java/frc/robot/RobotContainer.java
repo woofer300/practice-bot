@@ -9,11 +9,9 @@ import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.Constants.OIConstants;
 import frc.robot.commands.Intake;
 import frc.robot.commands.TankDrive;
-import frc.robot.commands.TurretTrack;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.LimelightSubsystem;
-import frc.robot.subsystems.TurretSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 
 /**
@@ -26,7 +24,6 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   public static final DriveSubsystem m_drivetrain = new DriveSubsystem();
   public static final LimelightSubsystem m_limelight = new LimelightSubsystem();
-  public static final TurretSubsystem m_turret = new TurretSubsystem();
   public static final IntakeSubsystem m_intake = new IntakeSubsystem();
 
   XboxController m_driverController = new XboxController(OIConstants.DRIVER_CONTROLLER_PORT);
@@ -36,8 +33,7 @@ public class RobotContainer {
     // Configure the button bindings
     m_drivetrain.setDefaultCommand(new TankDrive(m_drivetrain, m_driverController::getLeftY, m_driverController::getRightY));
     configureButtonBindings();
-    m_turret.setDefaultCommand(new TurretTrack(m_turret, m_limelight));
-    m_intake.setDefaultCommand(new Intake());
+    m_intake.setDefaultCommand(new Intake(m_intake));
   }
 
   /**
