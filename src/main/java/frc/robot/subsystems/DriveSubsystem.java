@@ -13,10 +13,10 @@ import frc.robot.Constants.DriveConstants;
 
 public class DriveSubsystem extends SubsystemBase {
 
-  private final WPI_TalonSRX m_leftFrontTalon= new WPI_TalonSRX(DriveConstants.LEFT_FRONT_TALON);
-  private final WPI_TalonSRX m_rightFrontTalon= new WPI_TalonSRX(DriveConstants.RIGHT_FRONT_TALON);
-  private final WPI_TalonSRX m_leftBackTalon= new WPI_TalonSRX(DriveConstants.LEFT_BACK_TALON);
-  private final WPI_TalonSRX m_rightBackTalon= new WPI_TalonSRX(DriveConstants.RIGHT_BACK_TALON);
+  private final WPI_TalonSRX m_leftFrontTalon = new WPI_TalonSRX(DriveConstants.LEFT_FRONT_TALON);
+  private final WPI_TalonSRX m_rightFrontTalon = new WPI_TalonSRX(DriveConstants.RIGHT_FRONT_TALON);
+  private final WPI_TalonSRX m_leftBackTalon = new WPI_TalonSRX(DriveConstants.LEFT_BACK_TALON);
+  private final WPI_TalonSRX m_rightBackTalon = new WPI_TalonSRX(DriveConstants.RIGHT_BACK_TALON);
 
   private final MotorControllerGroup m_leftTalons= new MotorControllerGroup(m_leftFrontTalon, m_leftBackTalon);
   private final MotorControllerGroup m_rightTalons= new MotorControllerGroup(m_rightFrontTalon, m_rightBackTalon);
