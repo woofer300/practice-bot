@@ -35,23 +35,10 @@ public class TurretTrack extends CommandBase{
         SmartDashboard.putBoolean("PID Running", false);
         SmartDashboard.putNumber("Error", error);
         SmartDashboard.putNumber("Current POS", m_turret.getPOS());
-        SmartDashboard.putNumber("Velocitt" , m_turret.getVelocity());
-        SmartDashboard.putNumber("Debug Error", m_turret.getDebugError());
-        SmartDashboard.putNumber("Motor Power", m_turret.getMotorPower());
-        SmartDashboard.putBoolean("Targeted", m_limelight.isTargetDetected());
-        SmartDashboard.putBoolean("APressed", m_controller.getAButton());
-        if(m_controller.getAButton()) {
-            m_turret.moveA();
-        }
-        else if (m_controller.getBButton()) {
-            m_turret.moveB();
-        }
-        else {
-            SmartDashboard.putBoolean("PID Running", true);
-            error = -error + m_turret.getPOS();
-            SmartDashboard.putNumber("INPUT ERROR", error);
-            m_turret.PIDmove(error);
-        }
+        
+        error = -error + m_turret.getPOS();
+        SmartDashboard.putNumber("INPUT ERROR", error);
+        m_turret.PIDmove(error);
       }
 
     @Override
