@@ -13,6 +13,7 @@ import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.LimelightSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -27,13 +28,14 @@ public class RobotContainer {
   public static final IntakeSubsystem m_intake = new IntakeSubsystem();
 
   XboxController m_driverController = new XboxController(OIConstants.DRIVER_CONTROLLER_PORT);
+  JoystickButton joystickButton 
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the button bindings
     m_drivetrain.setDefaultCommand(new TankDrive(m_drivetrain, m_driverController::getLeftY, m_driverController::getRightY));
+    m_intake.register();
     configureButtonBindings();
-    m_intake.setDefaultCommand(new Intake(m_intake));
   }
 
   /**
