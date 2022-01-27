@@ -58,6 +58,9 @@ public class TurretSubsystem extends SubsystemBase {
     m_turretMotor.configMotionCruiseVelocity(3000, TurretConstants.kTimeoutMs);
     m_turretMotor.configMotionAcceleration(3000, TurretConstants.kTimeoutMs);
 
+    /* Set allowable error */
+    m_turretMotor.configAllowableClosedloopError(TurretConstants.kSlotIdx, TurretConstants.AllowableError);
+
     /* Zero the sensor once on robot boot up */
     m_turretMotor.setSelectedSensorPosition(0, TurretConstants.kPIDLoopIdx, TurretConstants.kTimeoutMs);
 

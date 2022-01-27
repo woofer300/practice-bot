@@ -24,9 +24,6 @@ public final class Constants {
         public static final int TURRET_TALON = 4;
         public static final int MAX_VELOCITY = 375;
         public static final int MAX_ACCELERATION = 187;
-
-        //Sensor Prep
-        public static double MAXSENSORVELOCITY= 1560;
         
         
         //PID CONTROL SPECIFIC CONSTANTS
@@ -34,7 +31,7 @@ public final class Constants {
         public static final int kSlotIdx= 0;
         public static final int kPIDLoopIdx= 0;
         public static double kF = .55;
-        public static final double kP= .2;
+        public static final double kP= .3;
         public static final double kI= 0;    
         public static final double kD= 0;
         public static final double AllowableError= 1;
