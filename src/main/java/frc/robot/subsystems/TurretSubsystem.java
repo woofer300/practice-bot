@@ -35,7 +35,7 @@ public class TurretSubsystem extends SubsystemBase {
      * sensor to have positive increment when driving Talon Forward (Green LED)
      */
     m_turretMotor.setSensorPhase(true);
-    //m_turretMotor.setInverted(true);
+    m_turretMotor.setInverted(true);
 
     /* Set relevant frame periods to be at least as fast as periodic rate */
     m_turretMotor.setStatusFramePeriod(StatusFrameEnhanced.Status_13_Base_PIDF0, 10, TurretConstants.kTimeoutMs);
