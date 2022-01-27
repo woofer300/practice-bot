@@ -22,8 +22,8 @@ public final class Constants {
 
     public static final class TurretConstants {
         public static final int TURRET_TALON = 4;
-        public static final int MAX_VELOCITY = 750;
-        public static final int MAX_ACCELERATION = 750;
+        public static final int MAX_VELOCITY = 375;
+        public static final int MAX_ACCELERATION = 187;
 
         //Sensor Prep
         public static double MAXSENSORVELOCITY= 1560;
@@ -33,7 +33,7 @@ public final class Constants {
         public static final int kTimeoutMs = 30;
         public static final int kSlotIdx= 0;
         public static final int kPIDLoopIdx= 0;
-        public static double kF = 2;
+        public static double kF = 2.5;
         public static final double kP= 0;
         public static final double kI= 0;    
         public static final double kD= 0;
