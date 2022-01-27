@@ -48,7 +48,9 @@ public class TurretTrack extends CommandBase{
         }
         else {
             SmartDashboard.putBoolean("PID Running", true);
-            m_turret.PIDmove(error + m_turret.getPOS());
+            error = error + m_turret.getPOS();
+            SmartDashboard.putNumber("INPUT ERROR", error);
+            m_turret.PIDmove(error);
         }
       }
 

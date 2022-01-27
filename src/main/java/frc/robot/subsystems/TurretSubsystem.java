@@ -3,6 +3,7 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.StatusFrame;
+import com.ctre.phoenix.motorcontrol.TalonSRXControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -19,8 +20,11 @@ public class TurretSubsystem extends SubsystemBase {
         //Factory Default to ensure that talon behaves the same all the time
         m_turretMotor.configFactoryDefault();
 
+        //Zero the encoder
+		m_turretMotor.setSelectedSensorPosition(0, TurretConstants.kPIDLoopIdx, TurretConstants.kTimeoutMs);
+
         //Configure sensor source for primary PID
-        m_turretMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, TurretConstants.kPIDLoopIdx, TurretConstants.kTimeoutMs);
+        m_turretMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, TurretConstants.kPIDLoopIdx, TurretConstants.kTimeoutMs);
 
         //Set the deadband to a super small value
         m_turretMotor.configNeutralDeadband(0.001, TurretConstants.kTimeoutMs);
@@ -57,16 +61,13 @@ public class TurretSubsystem extends SubsystemBase {
         //Sets peak current
         m_turretMotor.configPeakCurrentLimit(20);
 
-        //Zero the encoder
-		m_turretMotor.setSelectedSensorPosition(0, TurretConstants.kPIDLoopIdx, TurretConstants.kTimeoutMs);
-
         //The allowable error 
         m_turretMotor.configAllowableClosedloopError(TurretConstants.kSlotIdx, 10, TurretConstants.kTimeoutMs);
 
     }
 
     public void PIDmove(double error) {
-        m_turretMotor.set(ControlMode.MotionMagic, error);
+        m_turretMotor.set(TalonSRXControlMode.MotionMagic, error);
     }
 
     public double getPOS() {
