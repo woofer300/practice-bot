@@ -31,7 +31,7 @@ public final class Constants {
         public static final int kSlotIdx= 0;
         public static final int kPIDLoopIdx= 0;
         public static double kF = .55;
-        public static final double kP= .3;
+        public static final double kP= .35;
         public static final double kI= 0;    
         public static final double kD= 0;
         public static final double AllowableError= 1;
