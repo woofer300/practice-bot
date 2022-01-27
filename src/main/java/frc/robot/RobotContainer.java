@@ -7,7 +7,9 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.Constants.OIConstants;
+import frc.robot.commands.ExtendPneumatic;
 import frc.robot.commands.Intake;
+import frc.robot.commands.RetractPneumatic;
 import frc.robot.commands.TankDrive;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
@@ -28,7 +30,8 @@ public class RobotContainer {
   public static final IntakeSubsystem m_intake = new IntakeSubsystem();
 
   XboxController m_driverController = new XboxController(OIConstants.DRIVER_CONTROLLER_PORT);
-  JoystickButton joystickButton 
+  JoystickButton a = new JoystickButton(m_driverController, XboxController.Button.kA.value);
+  JoystickButton b = new JoystickButton(m_driverController, XboxController.Button.kB.value);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -44,7 +47,10 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a {@link
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
-  private void configureButtonBindings() {}
+  private void configureButtonBindings() {
+    a.whenPressed(new ExtendPneumatic(m_intake));
+    b.whenPressed(new RetractPneumatic(m_intake));
+  }
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
