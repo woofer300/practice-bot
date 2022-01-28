@@ -5,14 +5,19 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.XboxController.Button;
 import frc.robot.Constants.OIConstants;
 import frc.robot.commands.TankDrive;
+import frc.robot.commands.TurretFindLeft;
+import frc.robot.commands.TurretFindRight;
 import frc.robot.commands.TurretTrack;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.LimelightSubsystem;
 import frc.robot.subsystems.TurretSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -43,7 +48,16 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a {@link
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
-  private void configureButtonBindings() {}
+  private void configureButtonBindings() {
+    //Creates a new Joystick Button object using the xbox controller buttons. Binds FindLeft and FindRight to them.
+    JoystickButton leftBump = new JoystickButton(m_operatorController, XboxController.Button.kLeftBumper.value);
+    leftBump.whenPressed(new TurretFindLeft(m_turret, m_limelight));
+    JoystickButton rightBump = new JoystickButton(m_operatorController, XboxController.Button.kRightBumper.value);
+    rightBump.whenPressed(new TurretFindRight(m_turret, m_limelight));
+
+    
+
+  }
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
