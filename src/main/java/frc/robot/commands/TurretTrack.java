@@ -32,7 +32,7 @@ public class TurretTrack extends CommandBase{
         SmartDashboard.putNumber("Error", error);
         currentPOS = m_turret.getPOS();
         error = -error + currentPOS;
-        if(Math.abs(m_turret.getPOS()) < 2960) {
+        if(Math.abs(error) < 2960) {
             m_operatorController.setRumble(RumbleType.kLeftRumble, 0);
             m_operatorController.setRumble(RumbleType.kRightRumble, 0);
             SmartDashboard.putBoolean("Overconstrained", false);
