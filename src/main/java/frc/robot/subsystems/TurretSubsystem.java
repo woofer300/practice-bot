@@ -63,7 +63,6 @@ public class TurretSubsystem extends SubsystemBase {
 
     /* Zero the sensor once on robot boot up */
     m_turretMotor.setSelectedSensorPosition(0, TurretConstants.PIDLOOP_ID, TurretConstants.TIMEOUT_MS);
-
     }
 
     public void PIDmove(double error) {
@@ -74,23 +73,11 @@ public class TurretSubsystem extends SubsystemBase {
         return m_turretMotor.getSelectedSensorPosition();
     }
 
-    public double getVelocity() {
-        return m_turretMotor.getSelectedSensorVelocity();
-    }
-
-    public double getMotorPower() {
-        return m_turretMotor.getBusVoltage();
-    }
-
     public double getDebugError() {
         return m_turretMotor.getClosedLoopError();
     }
 
-    public void moveA() {
-        m_turretMotor.set(.1);
-    }
-
-    public void moveB() {
-        m_turretMotor.set(-.1);
+    public boolean sufficientlyTargeted() {
+        return Math.abs(m_turretMotor.getClosedLoopError()) < 5 ? true : false;
     }
 }

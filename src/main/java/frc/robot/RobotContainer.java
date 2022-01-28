@@ -27,13 +27,14 @@ public class RobotContainer {
   public static final TurretSubsystem m_turret = new TurretSubsystem();
 
   XboxController m_driverController = new XboxController(OIConstants.DRIVER_CONTROLLER_PORT);
+  XboxController m_operatorController = new XboxController(OIConstants.OPERATOR_CONTROLLER_PORT);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the button bindings
     m_drivetrain.setDefaultCommand(new TankDrive(m_drivetrain, m_driverController::getLeftY, m_driverController::getRightY));
     configureButtonBindings();
-    m_turret.setDefaultCommand(new TurretTrack(m_turret, m_limelight, m_driverController));
+    m_turret.setDefaultCommand(new TurretTrack(m_turret, m_limelight, m_operatorController));
   }
 
   /**
