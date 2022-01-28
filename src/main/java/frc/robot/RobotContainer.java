@@ -28,7 +28,7 @@ public class RobotContainer {
   public static final LimelightSubsystem m_limelight = new LimelightSubsystem();
   public static final IntakeSubsystem m_intake = new IntakeSubsystem();
 
-  XboxController m_driverController = new XboxController(OIConstants.DRIVER_CONTROLLER_PORT);
+  XboxController m_driverController = new XboxController(OIConstants.DRIVER_CONTROLLER);
   JoystickButton a = new JoystickButton(m_driverController, XboxController.Button.kA.value);
   JoystickButton b = new JoystickButton(m_driverController, XboxController.Button.kB.value);
 
