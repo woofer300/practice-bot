@@ -65,19 +65,33 @@ public class TurretSubsystem extends SubsystemBase {
     m_turretMotor.setSelectedSensorPosition(0, TurretConstants.PIDLOOP_ID, TurretConstants.TIMEOUT_MS);
     }
 
+    //Moves the turret to the designated error in encoder untis.
     public void PIDmove(double error) {
         m_turretMotor.set(TalonSRXControlMode.MotionMagic, error);
     }
 
+    //returns the encoder position of the shooter
     public double getPOS() {
         return m_turretMotor.getSelectedSensorPosition();
     }
 
+    //returns the error used in the PID loop
     public double getDebugError() {
         return m_turretMotor.getClosedLoopError();
     }
 
+    //returns true if the turret is accurate enough to shoot
     public boolean sufficientlyTargeted() {
         return Math.abs(m_turretMotor.getClosedLoopError()) < 5 ? true : false;
+    }
+
+    //moves the turret left
+    public void moveLeft(double power) {
+        m_turretMotor.set(power * -.2);
+    }
+
+    //moves the turret right
+    public void moveRight(double power) {
+        m_turretMotor.set(power * .2);
     }
 }

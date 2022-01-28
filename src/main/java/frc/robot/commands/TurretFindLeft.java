@@ -25,7 +25,6 @@ public class TurretFindLeft extends CommandBase {
 
   // Called every time the scheduler runs while the command is scheduled.
   boolean tv;
-  
   @Override
   public void execute() {
     tv = m_limelight.isTargetDetected();

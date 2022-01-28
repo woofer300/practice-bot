@@ -24,15 +24,23 @@ public class TurretTrack extends CommandBase{
         m_turret.configureTurret(); //Configures the turret to run at max velocity + acceleration
     }
 
-    double error;
-    double currentPOS;
     @Override
     public void execute() {
-        error = m_limelight.getHorizontalOffset(true); //Gets the x angle from the limelight
+        double error = m_limelight.getHorizontalOffset(true); //Gets the x angle from the limelight
         SmartDashboard.putNumber("Error", error);
-        currentPOS = m_turret.getPOS();
+        double currentPOS = m_turret.getPOS();
         error = -error + currentPOS;
-        if(Math.abs(error) < 2960) {
+
+        double LeftTrigger = m_operatorController.getLeftTriggerAxis();
+        double RightTrigger = m_operatorController.getRightTriggerAxis();
+
+        if(LeftTrigger > 0.01 && !(RightTrigger > 0) && Math.abs(error) < 2960) {
+            m_turret.moveLeft(LeftTrigger);
+        }
+        else if (!(LeftTrigger > 0) && RightTrigger > 0.01 && Math.abs(error) < 2960) {
+            m_turret.moveRight(RightTrigger);
+        }
+        else if(Math.abs(error) < 2960) {
             m_operatorController.setRumble(RumbleType.kLeftRumble, 0);
             m_operatorController.setRumble(RumbleType.kRightRumble, 0);
             SmartDashboard.putBoolean("Overconstrained", false);
