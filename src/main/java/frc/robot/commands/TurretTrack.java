@@ -37,10 +37,10 @@ public class TurretTrack extends CommandBase{
 
         SmartDashboard.putNumber("POS", currentPOS);
 
-        if(LeftTrigger > 0.01 && !(RightTrigger > 0) && Math.abs(error) < TurretConstants.DEGREE) {
+        if(LeftTrigger > 0.1 && !(RightTrigger > 0) && error < TurretConstants.DEGREE) {
             m_turret.moveLeft(LeftTrigger);
         }
-        else if (!(LeftTrigger > 0) && RightTrigger > 0.01 && Math.abs(error) < TurretConstants.DEGREE) {
+        else if (!(LeftTrigger > 0) && RightTrigger > 0.1 && error > TurretConstants.DEGREE) {
             m_turret.moveRight(RightTrigger);
         }
         else if(Math.abs(error) < 1024) {
@@ -53,6 +53,12 @@ public class TurretTrack extends CommandBase{
             SmartDashboard.putBoolean("Overconstrained", true);
             m_operatorController.setRumble(RumbleType.kLeftRumble, 1.0);
             m_operatorController.setRumble(RumbleType.kRightRumble, 1.0);
+            if(currentPOS > TurretConstants.DEGREE) {
+                m_turret.PIDmove(TurretConstants.DEGREE - 10);
+            }
+            else if (currentPOS < -TurretConstants.DEGREE) {
+                m_turret.PIDmove(-TurretConstants.DEGREE + 10);
+            }
         }
       }
 
