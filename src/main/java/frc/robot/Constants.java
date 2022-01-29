@@ -46,9 +46,9 @@ public final class Constants {
         public static final int SMOOTHING= 3;
 
         // LIMELIGHT ANGLE | Reference: https://docs.limelightvision.io/en/latest/cs_estimating_distance.html#using-area
-        public static final double ANGLE_1 = (Math.PI/9); 
-        public static final double HEIGHT_1 = 2;
-        public static final double HEIGHT_2 = 8;
+        public static final double ANGLE_1 = (Math.PI/5); // 36 degrees
+        public static final double HEIGHT_1 = 0.686; // Unit: meters | 27 inches
+        public static final double HEIGHT_2 = 2.438; // Unit: meters | 8 feet
     }
 
     public static final class OIConstants {
