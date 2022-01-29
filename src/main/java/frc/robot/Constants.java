@@ -36,7 +36,7 @@ public final class Constants {
         public static double KF = .55;
         public static final double KP= .45;
         public static final double KI= 0;    
-        public static final double KD= 200;
+        public static final double KD= 4.5;
         public static final double ALLOWABLE_ERROR= 1;
         public static final double I_ZONE= 0;
         public static final double MAX_INTEGRAL_ACCUMULATOR= 0;
