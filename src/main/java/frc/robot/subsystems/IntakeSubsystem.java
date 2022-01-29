@@ -28,6 +28,7 @@ public class IntakeSubsystem extends SubsystemBase {
     public void periodic() {
         SmartDashboard.putString("Left Pneumatic State", solenoidStatus(leftDoubleSolenoid));
         SmartDashboard.putString("Right Pneumatic State", solenoidStatus(rightDoubleSolenoid));
+        SmartDashboard.putBoolean("Compressor Status", compressor.enabled());
         SmartDashboard.putNumber("PSI", compressor.getPressure());
     }
 
