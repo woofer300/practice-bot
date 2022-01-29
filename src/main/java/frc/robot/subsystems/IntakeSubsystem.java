@@ -1,5 +1,7 @@
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.Compressor;
+
 // import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -10,6 +12,7 @@ import frc.robot.Constants.IntakeConstants;
 
 public class IntakeSubsystem extends SubsystemBase {
 
+    Compressor compressor = new Compressor(9, PneumaticsModuleType.CTREPCM);
     // private final WPI_TalonSRX intakeTalon = new WPI_TalonSRX(IntakeConstants.INTAKE_TALON); // Talon 5
     private final DoubleSolenoid leftDoubleSolenoid;
     private final DoubleSolenoid rightDoubleSolenoid;
@@ -25,6 +28,7 @@ public class IntakeSubsystem extends SubsystemBase {
     public void periodic() {
         SmartDashboard.putString("Left Pneumatic State", solenoidStatus(leftDoubleSolenoid));
         SmartDashboard.putString("Right Pneumatic State", solenoidStatus(rightDoubleSolenoid));
+        SmartDashboard.putNumber("PSI", compressor.getPressure());
     }
 
     private String solenoidStatus(DoubleSolenoid solenoid) {
