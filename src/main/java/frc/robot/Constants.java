@@ -32,8 +32,8 @@ public final class Constants {
         public static final int kPIDLoopIdx= 0;
         public static double kF = .5;
         public static final double kP= .4;
-        public static final double kI= 0;    
-        public static final double kD= 0;
+        public static final double kI= .02;    
+        public static final double kD= 4;
         public static final double AllowableError= 1;
         public static final double IZone= 0;
         public static final double MaxIntegralAccumulator= 0;
