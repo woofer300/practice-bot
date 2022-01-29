@@ -26,6 +26,11 @@ public class DriveSubsystem extends SubsystemBase {
   /** Creates a new Drivetrain. */
   public DriveSubsystem() {
 
+    m_leftFrontTalon.configFactoryDefault();
+    m_leftBackTalon.configFactoryDefault();
+    m_rightFrontTalon.configFactoryDefault();
+    m_rightBackTalon.configFactoryDefault();
+    m_drive.stopMotor();
   }
 
   @Override
@@ -35,5 +40,9 @@ public class DriveSubsystem extends SubsystemBase {
 
   public void tankDrive(double leftSpeed, double rightSpeed) {
     m_drive.tankDrive(-leftSpeed, rightSpeed, true);
+  }
+
+  public void stop() {
+    m_drive.stopMotor();
   }
 }

@@ -32,7 +32,7 @@ public class TurretFindRight extends CommandBase {
   public void execute() {
     tv = m_limelight.isTargetDetected();
     double pos = m_turret.getPOS();
-    if(!tv && pos < TurretConstants.DEGREE) {
+    if(!tv && pos < TurretConstants.DEGREE + 10) {
       SmartDashboard.putNumber("POS", m_turret.getPOS());
       m_turret.PIDmove(-TurretConstants.DEGREE);
     }

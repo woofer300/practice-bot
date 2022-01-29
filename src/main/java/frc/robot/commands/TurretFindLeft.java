@@ -32,8 +32,8 @@ public class TurretFindLeft extends CommandBase {
     tv = m_limelight.isTargetDetected();
     double pos = m_turret.getPOS();
     SmartDashboard.putNumber("POS", pos);
-    if(!tv && Math.abs(pos) < TurretConstants.DEGREE) {
-      m_turret.PIDmove(1024);
+    if(!tv && pos > -TurretConstants.DEGREE - 10) {
+      m_turret.PIDmove(-TurretConstants.DEGREE);
     }
   }
 
