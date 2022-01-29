@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.Constants.OIConstants;
 import frc.robot.commands.TankDrive;
+import frc.robot.commands.ToggleIntake;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.LimelightSubsystem;
@@ -29,7 +30,6 @@ public class RobotContainer {
 
   XboxController m_driverController = new XboxController(OIConstants.DRIVER_CONTROLLER);
   JoystickButton a = new JoystickButton(m_driverController, XboxController.Button.kA.value);
-  JoystickButton b = new JoystickButton(m_driverController, XboxController.Button.kB.value);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -46,8 +46,7 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    a.whenPressed(new InstantCommand(() -> m_intake.extend(), m_intake));
-    b.whenPressed(new InstantCommand(() -> m_intake.retract(), m_intake));
+    a.whenPressed(new ToggleIntake(m_intake));
   }
 
   /**
