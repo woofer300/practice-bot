@@ -24,7 +24,7 @@ public class IntakeSubsystem extends SubsystemBase {
     @Override
     public void periodic() {
         SmartDashboard.putString("Left Pneumatic State", solenoidStatus(leftDoubleSolenoid));
-        SmartDashboard.putString("Left Pneumatic State", solenoidStatus(rightDoubleSolenoid));
+        SmartDashboard.putString("Right Pneumatic State", solenoidStatus(rightDoubleSolenoid));
     }
 
     private String solenoidStatus(DoubleSolenoid solenoid) {
