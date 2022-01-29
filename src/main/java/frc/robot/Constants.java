@@ -30,15 +30,15 @@ public final class Constants {
         public static final int TIMEOUT_MS = 30;
         public static final int SLOT_IDX= 0;
         public static final int PIDLOOP_ID= 0;
-        public static double KF = .5;
-        public static final double KP= .4;
-        public static final double KI= 0;    
+        public static double KF = .6;
+        public static final double KP= .5;
+        public static final double KI= 0.01;    
         public static final double KD= 200;
         public static final double ALLOWABLE_ERROR= 1;
         public static final double I_ZONE= 0;
         public static final double MAX_INTEGRAL_ACCUMULATOR= 0;
         public static final double PEAK_OUTPUT= 12;
-        public static final int SMOOTHING= 1;
+        public static final int SMOOTHING= 3;
     }
 
     public static final class OIConstants {
