@@ -5,6 +5,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants.TurretConstants;
 import frc.robot.subsystems.LimelightSubsystem;
 import frc.robot.subsystems.TurretSubsystem;
 
@@ -28,7 +29,9 @@ public class TurretFindRight extends CommandBase {
   @Override
   public void execute() {
     tv = m_limelight.isTargetDetected();
-    m_turret.PIDmove(-1024);
+    if(!tv) {
+      m_turret.PIDmove(-TurretConstants.DEGREE);
+    }
   }
 
   // Called once the command ends or is interrupted.

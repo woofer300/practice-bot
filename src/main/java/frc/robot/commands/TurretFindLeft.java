@@ -28,7 +28,9 @@ public class TurretFindLeft extends CommandBase {
   @Override
   public void execute() {
     tv = m_limelight.isTargetDetected();
-    m_turret.PIDmove(1024);
+    if(!tv) {
+      m_turret.PIDmove(1024);
+    }
   }
 
   // Called once the command ends or is interrupted.

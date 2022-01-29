@@ -24,6 +24,9 @@ public final class Constants {
         public static final int TURRET_TALON = 4;
         public static final int MAX_VELOCITY = 375;
         public static final int MAX_ACCELERATION = 375;
+
+        //Degrees of Freedom
+        public static double DEGREE = 1024;
         
         
         //PID CONTROL SPECIFIC CONSTANTS
@@ -32,7 +35,7 @@ public final class Constants {
         public static final int PIDLOOP_ID= 0;
         public static double KF = .6;
         public static final double KP= .5;
-        public static final double KI= 0.01;    
+        public static final double KI= 0.0001;    
         public static final double KD= 200;
         public static final double ALLOWABLE_ERROR= 1;
         public static final double I_ZONE= 0;

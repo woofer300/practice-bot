@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants.TurretConstants;
 import frc.robot.subsystems.LimelightSubsystem;
 import frc.robot.subsystems.TurretSubsystem;
 
@@ -34,10 +35,10 @@ public class TurretTrack extends CommandBase{
         double LeftTrigger = m_operatorController.getLeftTriggerAxis();
         double RightTrigger = m_operatorController.getRightTriggerAxis();
 
-        if(LeftTrigger > 0.01 && !(RightTrigger > 0) && Math.abs(error) < 1024) {
+        if(LeftTrigger > 0.01 && !(RightTrigger > 0) && Math.abs(error) < TurretConstants.DEGREE) {
             m_turret.moveLeft(LeftTrigger);
         }
-        else if (!(LeftTrigger > 0) && RightTrigger > 0.01 && Math.abs(error) < 1024) {
+        else if (!(LeftTrigger > 0) && RightTrigger > 0.01 && Math.abs(error) < TurretConstants.DEGREE) {
             m_turret.moveRight(RightTrigger);
         }
         else if(Math.abs(error) < 1024) {
