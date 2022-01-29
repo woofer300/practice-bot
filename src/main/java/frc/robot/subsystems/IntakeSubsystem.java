@@ -20,8 +20,8 @@ public class IntakeSubsystem extends SubsystemBase {
     private final WPI_TalonSRX intakeTalon = new WPI_TalonSRX(IntakeConstants.INTAKE_TALON); // Talon 5
 
     public IntakeSubsystem() {  
-        leftDoubleSolenoid.set(DoubleSolenoid.Value.kForward);
-        rightDoubleSolenoid.set(DoubleSolenoid.Value.kForward);
+        leftDoubleSolenoid.set(DoubleSolenoid.Value.kOff);
+        rightDoubleSolenoid.set(DoubleSolenoid.Value.kOff);
     }
 
     @Override
