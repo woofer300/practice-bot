@@ -50,7 +50,7 @@ public class IntakeSubsystem extends SubsystemBase {
 
     }
 
-    public void extend() {
+    public void deploy() {
         leftDoubleSolenoid.set(DoubleSolenoid.Value.kForward);
         rightDoubleSolenoid.set(DoubleSolenoid.Value.kForward);
     }
