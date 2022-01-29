@@ -4,7 +4,9 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants.TurretConstants;
 import frc.robot.subsystems.LimelightSubsystem;
 import frc.robot.subsystems.TurretSubsystem;
 
@@ -28,7 +30,9 @@ public class TurretFindLeft extends CommandBase {
   @Override
   public void execute() {
     tv = m_limelight.isTargetDetected();
-    if(!tv) {
+    double pos = m_turret.getPOS();
+    SmartDashboard.putNumber("POS", pos);
+    if(!tv && Math.abs(pos) < TurretConstants.DEGREE) {
       m_turret.PIDmove(1024);
     }
   }
