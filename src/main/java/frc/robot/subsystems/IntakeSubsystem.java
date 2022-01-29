@@ -16,9 +16,9 @@ public class IntakeSubsystem extends SubsystemBase {
 
     public IntakeSubsystem() {
         leftDoubleSolenoid = new DoubleSolenoid(IntakeConstants.CTRE_PCM, PneumaticsModuleType.CTREPCM, IntakeConstants.LEFT_PNEUMATIC_FORWARD, IntakeConstants.LEFT_PNEUMATIC_REVERSE);
-        leftDoubleSolenoid.set(DoubleSolenoid.Value.kOff);
+        leftDoubleSolenoid.set(DoubleSolenoid.Value.kForward);
         rightDoubleSolenoid = new DoubleSolenoid(IntakeConstants.CTRE_PCM, PneumaticsModuleType.CTREPCM, IntakeConstants.RIGHT_PNEUMATIC_FORWARD, IntakeConstants.RIGHT_PNEUMATIC_REVERSE);
-        rightDoubleSolenoid.set(DoubleSolenoid.Value.kOff);
+        rightDoubleSolenoid.set(DoubleSolenoid.Value.kForward);
     }
 
     @Override

@@ -33,9 +33,9 @@ public final class Constants {
     public static final class IntakeConstants {
         public static final int INTAKE_TALON = 5;
         public static final int CTRE_PCM = 9;
-        public static final int LEFT_PNEUMATIC_FORWARD = 0;
-        public static final int LEFT_PNEUMATIC_REVERSE = 7;
-        public static final int RIGHT_PNEUMATIC_FORWARD = 2;
-        public static final int RIGHT_PNEUMATIC_REVERSE = 5;
+        public static final int LEFT_PNEUMATIC_FORWARD = 2;
+        public static final int LEFT_PNEUMATIC_REVERSE = 5;
+        public static final int RIGHT_PNEUMATIC_FORWARD = 0;
+        public static final int RIGHT_PNEUMATIC_REVERSE = 7;
     }
 }
