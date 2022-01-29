@@ -34,8 +34,14 @@ public class TurretTrack extends CommandBase{
 
         double LeftTrigger = m_operatorController.getLeftTriggerAxis();
         double RightTrigger = m_operatorController.getRightTriggerAxis();
+        
+        // Uses trig to get distance | Reference: https://docs.limelightvision.io/en/latest/cs_estimating_distance.html#using-area
+        // measured in feet
+        double distance = m_limelight.getDistance();
 
         SmartDashboard.putNumber("POS", currentPOS);
+        // Display distance on Shuffleboard
+        SmartDashboard.putNumber("Distance", distance);
 
         if(LeftTrigger > 0.1 && RightTrigger == 0 && error > -TurretConstants.DEGREE) {
             //setting rumble to be off

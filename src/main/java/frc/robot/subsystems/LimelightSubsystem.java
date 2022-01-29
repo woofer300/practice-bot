@@ -4,9 +4,12 @@
 
 package frc.robot.subsystems;
 
+import java.util.*;
+
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants.TurretConstants;
 
 
 public class LimelightSubsystem extends SubsystemBase {
@@ -29,7 +32,7 @@ public class LimelightSubsystem extends SubsystemBase {
     return inEncoder ? x * 4096/360 : x;
   }
 
-  /**Returns the vertical offset of the limelight away from the target in degrees */
+  /**Returns the vertical angle of the limelight away from the target in degrees */
   public double getVerticalOffset() {
     return m_limelightTable.getEntry("ty").getDouble(0);
   }
@@ -38,4 +41,12 @@ public class LimelightSubsystem extends SubsystemBase {
   public boolean isTargetDetected() {
     return m_limelightTable.getEntry("tv").getDouble(0) == 1;
   }
+
+  // Reference: https://docs.limelightvision.io/en/latest/cs_estimating_distance.html#using-area
+  public double getDistance() {
+    // Unit: Feet
+    double distance = (TurretConstants.HEIGHT_2 - TurretConstants.HEIGHT_1) / Math.toRadians(Math.tan(TurretConstants.ANGLE_1 + getVerticalOffset()));
+    return distance;
+  }
+
 }
