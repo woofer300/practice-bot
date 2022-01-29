@@ -53,7 +53,7 @@ public class TurretTrack extends CommandBase{
             //calling moveRight
             m_turret.moveRight(RightTrigger);
         }
-        else if(Math.abs(error) < 1024) {
+        else if(error > -1024 && error < 1024) {
             SmartDashboard.putBoolean("Overconstrained", false);
             m_turret.PIDmove(error);
         }
