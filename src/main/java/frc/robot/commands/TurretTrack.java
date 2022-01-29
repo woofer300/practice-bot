@@ -38,14 +38,22 @@ public class TurretTrack extends CommandBase{
         SmartDashboard.putNumber("POS", currentPOS);
 
         if(LeftTrigger > 0.1 && RightTrigger == 0 && error > -TurretConstants.DEGREE) {
+            //setting rumble to be off
+            m_operatorController.setRumble(RumbleType.kLeftRumble, 0);
+            m_operatorController.setRumble(RumbleType.kRightRumble, 0);
+           
+            //calling moveleft
             m_turret.moveLeft(LeftTrigger);
         }
         else if ( LeftTrigger == 0 && RightTrigger > 0.1 && error < TurretConstants.DEGREE) {
+            //setting rumber to be off
+            m_operatorController.setRumble(RumbleType.kLeftRumble, 0);
+            m_operatorController.setRumble(RumbleType.kRightRumble, 0);
+
+            //calling moveRight
             m_turret.moveRight(RightTrigger);
         }
         else if(Math.abs(error) < 1024) {
-            m_operatorController.setRumble(RumbleType.kLeftRumble, 0);
-            m_operatorController.setRumble(RumbleType.kRightRumble, 0);
             SmartDashboard.putBoolean("Overconstrained", false);
             m_turret.PIDmove(error);
         }
