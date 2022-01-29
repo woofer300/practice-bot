@@ -57,7 +57,7 @@ public class TurretTrack extends CommandBase{
                 m_turret.PIDmove(-TurretConstants.DEGREE + 10);
             }
             else if (currentPOS > -TurretConstants.DEGREE) {
-                m_turret.PIDmove(-TurretConstants.DEGREE - 10);
+                m_turret.PIDmove(TurretConstants.DEGREE - 10);
             }
         }
       }
