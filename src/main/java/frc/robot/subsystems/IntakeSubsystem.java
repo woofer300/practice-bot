@@ -59,6 +59,10 @@ public class IntakeSubsystem extends SubsystemBase {
         leftDoubleSolenoid.set(DoubleSolenoid.Value.kReverse);
         rightDoubleSolenoid.set(DoubleSolenoid.Value.kReverse);
     }
+
+    public boolean isIntakeDeployed() {
+        return leftDoubleSolenoid.get().equals(DoubleSolenoid.Value.kForward) && rightDoubleSolenoid.get().equals(DoubleSolenoid.Value.kForward); 
+    }
 }
 
     
