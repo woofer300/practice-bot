@@ -50,9 +50,9 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     //Creates a new Joystick Button object using the xbox controller buttons. Binds FindLeft and FindRight to them.
-    JoystickButton leftBump = new JoystickButton(m_operatorController, XboxController.Button.kLeftBumper.value);
+    JoystickButton leftBump = new JoystickButton(m_driverController, XboxController.Button.kLeftBumper.value);
     leftBump.whenPressed(new TurretFindLeft(m_turret, m_limelight));
-    JoystickButton rightBump = new JoystickButton(m_operatorController, XboxController.Button.kRightBumper.value);
+    JoystickButton rightBump = new JoystickButton(m_driverController, XboxController.Button.kRightBumper.value);
     rightBump.whenPressed(new TurretFindRight(m_turret, m_limelight));
 
     
