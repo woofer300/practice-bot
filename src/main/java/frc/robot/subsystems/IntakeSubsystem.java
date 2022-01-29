@@ -12,7 +12,7 @@ import frc.robot.Constants.IntakeConstants;
 
 public class IntakeSubsystem extends SubsystemBase {
 
-    Compressor compressor = new Compressor(9, PneumaticsModuleType.CTREPCM);
+    Compressor compressor = new Compressor(IntakeConstants.CTRE_PCM, PneumaticsModuleType.CTREPCM);
 
     private final DoubleSolenoid leftDoubleSolenoid;
     private final DoubleSolenoid rightDoubleSolenoid;
