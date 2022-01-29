@@ -39,7 +39,7 @@ public class RobotContainer {
     // Configure the button bindings
     m_drivetrain.setDefaultCommand(new TankDrive(m_drivetrain, m_driverController::getLeftY, m_driverController::getRightY));
     configureButtonBindings();
-    m_turret.setDefaultCommand(new TurretTrack(m_turret, m_limelight, m_operatorController));
+    m_turret.setDefaultCommand(new TurretTrack(m_turret, m_limelight, m_driverController));
   }
 
   /**

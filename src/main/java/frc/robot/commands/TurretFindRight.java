@@ -4,7 +4,10 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants.TurretConstants;
 import frc.robot.subsystems.LimelightSubsystem;
 import frc.robot.subsystems.TurretSubsystem;
 
@@ -28,7 +31,11 @@ public class TurretFindRight extends CommandBase {
   @Override
   public void execute() {
     tv = m_limelight.isTargetDetected();
-    m_turret.PIDmove(-1024);
+    double pos = m_turret.getPOS();
+    if(!tv && pos < TurretConstants.DEGREE) {
+      SmartDashboard.putNumber("POS", m_turret.getPOS());
+      m_turret.PIDmove(-TurretConstants.DEGREE);
+    }
   }
 
   // Called once the command ends or is interrupted.
