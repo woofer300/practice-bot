@@ -10,10 +10,14 @@ import frc.robot.Constants.IntakeConstants;
 public class IntakeSubsystem extends SubsystemBase {
 
     // private final WPI_TalonSRX intakeTalon = new WPI_TalonSRX(IntakeConstants.INTAKE_TALON); // Talon 5
-    private final DoubleSolenoid doubleSolenoid;
+    private final DoubleSolenoid leftDoubleSolenoid;
+    private final DoubleSolenoid rightDoubleSolenoid;
 
     public IntakeSubsystem() {
-        doubleSolenoid = new DoubleSolenoid(IntakeConstants.CTRE_PCM, PneumaticsModuleType.CTREPCM, 0, 1);
+        leftDoubleSolenoid = new DoubleSolenoid(IntakeConstants.CTRE_PCM, PneumaticsModuleType.CTREPCM, 0, 1);
+        leftDoubleSolenoid.set(DoubleSolenoid.Value.kOff);
+        rightDoubleSolenoid = new DoubleSolenoid(IntakeConstants.CTRE_PCM, PneumaticsModuleType.CTREPCM, 6, 7);
+        rightDoubleSolenoid.set(DoubleSolenoid.Value.kOff);
     }
 
     @Override
