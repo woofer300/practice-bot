@@ -35,6 +35,8 @@ public class TurretTrack extends CommandBase{
         double LeftTrigger = m_operatorController.getLeftTriggerAxis();
         double RightTrigger = m_operatorController.getRightTriggerAxis();
 
+        SmartDashboard.putNumber("POS", currentPOS);
+
         if(LeftTrigger > 0.01 && !(RightTrigger > 0) && Math.abs(error) < TurretConstants.DEGREE) {
             m_turret.moveLeft(LeftTrigger);
         }
