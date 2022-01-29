@@ -27,21 +27,22 @@ public final class Constants {
         
         
         //PID CONTROL SPECIFIC CONSTANTS
-        public static final int kTimeoutMs = 30;
-        public static final int kSlotIdx= 0;
-        public static final int kPIDLoopIdx= 0;
-        public static double kF = .5;
-        public static final double kP= .4;
-        public static final double kI= .02;    
-        public static final double kD= 4;
-        public static final double AllowableError= 1;
-        public static final double IZone= 0;
-        public static final double MaxIntegralAccumulator= 0;
-        public static final double PeakOutput= 12;
-        public static final int Smoothing= 1;
+        public static final int TIMEOUT_MS = 30;
+        public static final int SLOT_IDX= 0;
+        public static final int PIDLOOP_ID= 0;
+        public static double KF = .5;
+        public static final double KP= .4;
+        public static final double KI= 0;    
+        public static final double KD= 2;
+        public static final double ALLOWABLE_ERROR= 1;
+        public static final double I_ZONE= 0;
+        public static final double MAX_INTEGRAL_ACCUMULATOR= 0;
+        public static final double PEAK_OUTPUT= 12;
+        public static final int SMOOTHING= 1;
     }
 
     public static final class OIConstants {
         public static final int DRIVER_CONTROLLER_PORT = 0;
+        public static final int OPERATOR_CONTROLLER_PORT= 1;
     }
 }
