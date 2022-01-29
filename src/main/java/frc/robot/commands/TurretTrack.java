@@ -37,7 +37,7 @@ public class TurretTrack extends CommandBase{
 
         SmartDashboard.putNumber("POS", currentPOS);
 
-        if(LeftTrigger > 0.1 && RightTrigger == 0 && error > TurretConstants.DEGREE) {
+        if(LeftTrigger > 0.1 && RightTrigger == 0 && error > -TurretConstants.DEGREE) {
             m_turret.moveLeft(LeftTrigger);
         }
         else if ( LeftTrigger == 0 && RightTrigger > 0.1 && error < TurretConstants.DEGREE) {
