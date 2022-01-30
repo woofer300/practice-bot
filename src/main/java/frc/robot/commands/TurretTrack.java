@@ -22,7 +22,6 @@ public class TurretTrack extends CommandBase{
 
     @Override
     public void initialize(){
-        m_turret.configureTurret(); //Configures the turret to run at max velocity + acceleration
     }
 
     double error;

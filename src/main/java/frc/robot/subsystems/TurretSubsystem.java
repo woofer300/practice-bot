@@ -12,9 +12,10 @@ public class TurretSubsystem extends SubsystemBase {
     private final WPI_TalonSRX m_turretMotor = new WPI_TalonSRX(TurretConstants.TURRET_TALON);
 
     public TurretSubsystem() {
+        configureTurret();
     }
 
-    public void configureTurret() {
+    private void configureTurret() {
         
     /* Factory default hardware to prevent unexpected behavior */
     m_turretMotor.configFactoryDefault();
