@@ -21,7 +21,7 @@ public class TurretSubsystem extends SubsystemBase {
     m_turretMotor.configFactoryDefault();
 
     /* Configure Sensor Source for Pirmary PID */
-    m_turretMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, TurretConstants.PIDLOOP_ID, TurretConstants.TIMEOUT_MS);
+    m_turretMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, TurretConstants.PIDLOOP_ID, TurretConstants.TIMEOUT_MS);
 
     /* set deadband to super small 0.001 (0.1 %).
     The default deadband is 0.04 (4 %) */
