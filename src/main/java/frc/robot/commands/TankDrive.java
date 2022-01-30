@@ -30,7 +30,7 @@ public class TankDrive extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_drive.tankDrive(m_leftSpeed.getAsDouble(), m_rightSpeed.getAsDouble());
+    m_drive.tankSquaredDrive(m_leftSpeed.getAsDouble(), m_rightSpeed.getAsDouble());
   }
 
   // Called once the command ends or is interrupted.

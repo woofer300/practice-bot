@@ -18,6 +18,16 @@ public final class Constants {
         public static final int RIGHT_FRONT_TALON = 0;
         public static final int LEFT_BACK_TALON = 3;
         public static final int RIGHT_BACK_TALON = 1;
+
+        //Max velocity in RPM
+        public static final double MAX_VELOCITY = 2000;
+
+        public static final int TIMEOUT_MS = 30;
+        public static final int kPIDLoopIdx = 0;
+        public static final int kF = 0;
+        public static final int kP = 0;
+        public static final int kI = 0;
+        public static final int kD = 0;
     }
 
     public static final class OIConstants {

@@ -4,6 +4,9 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.TalonFXFeedbackDevice;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
@@ -13,27 +16,73 @@ import frc.robot.Constants.DriveConstants;
 
 public class DriveSubsystem extends SubsystemBase {
 
-  private final WPI_TalonSRX m_leftFrontTalon = new WPI_TalonSRX(DriveConstants.LEFT_FRONT_TALON);
-  private final WPI_TalonSRX m_rightFrontTalon = new WPI_TalonSRX(DriveConstants.RIGHT_FRONT_TALON);
-  private final WPI_TalonSRX m_leftBackTalon = new WPI_TalonSRX(DriveConstants.LEFT_BACK_TALON);
-  private final WPI_TalonSRX m_rightBackTalon = new WPI_TalonSRX(DriveConstants.RIGHT_BACK_TALON);
-
-  private final MotorControllerGroup m_leftTalons = new MotorControllerGroup(m_leftFrontTalon, m_leftBackTalon);
-  private final MotorControllerGroup m_rightTalons = new MotorControllerGroup(m_rightFrontTalon, m_rightBackTalon);
-
-  private final DifferentialDrive m_drive = new DifferentialDrive(m_leftTalons, m_rightTalons);
+  private final WPI_TalonFX m_leftMaster = new WPI_TalonFX(DriveConstants.LEFT_FRONT_TALON);
+  private final WPI_TalonFX m_rightMaster = new WPI_TalonFX(DriveConstants.RIGHT_FRONT_TALON);
+  private final WPI_TalonFX m_leftSlave = new WPI_TalonFX(DriveConstants.LEFT_BACK_TALON);
+  private final WPI_TalonFX m_rightSlave = new WPI_TalonFX(DriveConstants.RIGHT_BACK_TALON);
 
   /** Creates a new Drivetrain. */
   public DriveSubsystem() {
-    
+    m_leftSlave.follow(m_leftMaster);
+    m_rightSlave.follow(m_rightMaster);
+
+    configTalon(m_leftMaster);
+    configTalon(m_rightMaster);
+  }
+
+  public void configTalon(WPI_TalonFX motorController) {
+    		/* Factory Default all hardware to prevent unexpected behaviour */
+		motorController.configFactoryDefault();
+		
+		/* Config neutral deadband to be the smallest possible */
+		motorController.configNeutralDeadband(0.001);
+
+		/* Config sensor used for Primary PID [Velocity] */
+    motorController.configSelectedFeedbackSensor(TalonFXFeedbackDevice.IntegratedSensor, DriveConstants.kPIDLoopIdx, DriveConstants.TIMEOUT_MS);
+											
+
+		/* Config the peak and nominal outputs */
+		motorController.configNominalOutputForward(0, DriveConstants.TIMEOUT_MS);
+		motorController.configNominalOutputReverse(0, DriveConstants.TIMEOUT_MS);
+		motorController.configPeakOutputForward(1, DriveConstants.TIMEOUT_MS);
+		motorController.configPeakOutputReverse(-1, DriveConstants.TIMEOUT_MS);
+
+		/* Config the Velocity closed loop gains in slot0 */
+		motorController.config_kF(DriveConstants.kPIDLoopIdx, DriveConstants.kF, DriveConstants.TIMEOUT_MS);
+		motorController.config_kP(DriveConstants.kPIDLoopIdx, DriveConstants.kP, DriveConstants.TIMEOUT_MS);
+		motorController.config_kI(DriveConstants.kPIDLoopIdx, DriveConstants.kI, DriveConstants.TIMEOUT_MS);
+		motorController.config_kD(DriveConstants.kPIDLoopIdx, DriveConstants.kD, DriveConstants.TIMEOUT_MS);
+		/*
+		 * Talon FX does not need sensor phase set for its integrated sensor
+		 * This is because it will always be correct if the selected feedback device is integrated sensor (default value)
+		 * and the user calls getSelectedSensor* to get the sensor's position/velocity.
+		 * 
+		 * https://phoenix-documentation.readthedocs.io/en/latest/ch14_MCSensor.html#sensor-phase
+		 */
+        // _talon.setSensorPhase(true);
+
   }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
   }
-  
-  public void tankDrive(double leftSpeed, double rightSpeed) {
-    m_drive.tankDrive(-leftSpeed, rightSpeed, true);
+
+  public double getLeftVelocity() {
+    return m_leftMaster.getSelectedSensorVelocity();
+  }
+
+  public double getRightVelocity() {
+    return m_rightMaster.getSelectedSensorVelocity();
+  }
+
+  public void tankLinearDrive(double leftSpeed, double rightSpeed) {
+    if(Math.abs(leftSpeed) > .02) { m_leftMaster.set(ControlMode.Velocity, leftSpeed);}
+    if(Math.abs(leftSpeed) > .02) { m_rightMaster.set(ControlMode.Velocity, rightSpeed);}
+  }
+
+  public void tankSquaredDrive(double leftSpeed, double rightSpeed) {
+    if(Math.abs(leftSpeed) > .02) { m_leftMaster.set(ControlMode.Velocity, Math.exp(leftSpeed) * DriveConstants.MAX_VELOCITY); }
+    if(Math.abs(leftSpeed) > .02) { m_rightMaster.set(ControlMode.Velocity, Math.exp(rightSpeed) * DriveConstants.MAX_VELOCITY);}
   }
 }
