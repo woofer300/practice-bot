@@ -25,9 +25,11 @@ public class TurretTrack extends CommandBase{
         m_turret.configureTurret(); //Configures the turret to run at max velocity + acceleration
     }
 
+    double error;
+
     @Override
     public void execute() {
-        double error = m_limelight.getHorizontalOffset(true); //Gets the x angle from the limelight
+        error = m_limelight.getHorizontalOffset(true); //Gets the x angle from the limelight
         SmartDashboard.putNumber("Error", error);
         double currentPOS = m_turret.getPOS();
         error = -error + currentPOS;
