@@ -28,6 +28,7 @@ public class TurretTrack extends CommandBase{
 
     @Override
     public void execute() {
+        boolean targeted = m_limelight.isTargetDetected();
         error = m_limelight.getHorizontalOffset(true); //Gets the x angle from the limelight
         SmartDashboard.putBoolean("Targeted", m_limelight.isTargetDetected());
         SmartDashboard.putNumber("Error", error);
@@ -45,7 +46,7 @@ public class TurretTrack extends CommandBase{
         // Display distance on Shuffleboard
         SmartDashboard.putNumber("Distance", distance);
 
-        if(LeftTrigger > 0.1 && RightTrigger == 0 && error > -TurretConstants.DEGREE) {
+        if(LeftTrigger > 0.1 && RightTrigger == 0 && error > -TurretConstants.DEGREE && !targeted) {
             //setting rumble to be off
             m_operatorController.setRumble(RumbleType.kLeftRumble, 0);
             m_operatorController.setRumble(RumbleType.kRightRumble, 0);
@@ -53,7 +54,7 @@ public class TurretTrack extends CommandBase{
             //calling moveleft
             m_turret.moveLeft(LeftTrigger);
         }
-        else if ( LeftTrigger == 0 && RightTrigger > 0.1 && error < TurretConstants.DEGREE) {
+        else if ( LeftTrigger == 0 && RightTrigger > 0.1 && error < TurretConstants.DEGREE && !targeted) {
             //setting rumber to be off
             m_operatorController.setRumble(RumbleType.kLeftRumble, 0);
             m_operatorController.setRumble(RumbleType.kRightRumble, 0);
@@ -61,7 +62,7 @@ public class TurretTrack extends CommandBase{
             //calling moveRight
             m_turret.moveRight(RightTrigger);
         }
-        else if(error > -1024 && error < 1024) {
+        else if(error > -1024 && error < 1024 && targeted) {
             SmartDashboard.putBoolean("Overconstrained", false);
             m_turret.PIDmove(error);
         }
